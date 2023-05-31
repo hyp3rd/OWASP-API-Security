@@ -8,6 +8,17 @@ LABEL org.opencontainers.image.authors="F." \
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY . /app
 
-RUN pip install -r requirements.txt
+RUN apt update && apt upgrade -y \
+    && apt install -y libmagic1 \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir --upgrade -r /app/requirements.txt
+
+EXPOSE 8000
+
+HEALTHCHECK --interval=15m --timeout=60s --retries=10 \
+    CMD wget --spider --no-verbose http://localhost:8000/ || exit 1
+
+CMD ["uvicorn", "api.api:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  #######################################
+  # The VulnAPI
+  # At the first run include the flag --build to build the image.
+  #######################################
+  vulnapi:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+
+    image: ghcr.io/hyp3rd/vuln-api:v1.0.0
+    container_name: "vulnapi"
+    hostname: "vulnapi"
+    expose:
+      - "8000"
+    ports:
+      - mode: ingress
+        target: 8000
+        published: 8000
+        protocol: tcp
+    networks:
+      vulnapi-net: null
+
+# Networks section
+networks:
+  vulnapi-net:
+    name: vulnapi-net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.20.0.0/16"
+    attachable: true

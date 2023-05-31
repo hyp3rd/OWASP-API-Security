@@ -24,9 +24,9 @@ __command_exists() {
 #######################################
 run() {
   if __command_exists uvicorn; then
-    docker build -t ghcr.io/hyp3rd/kali-in-docker:v1.0.0 .
+    docker build -t ghcr.io/hyp3rd/vuln-api:v1.0.0 .
 
-    docker push ghcr.io/hyp3rd/kali-in-docker:v1.0.0
+    docker push ghcr.io/hyp3rd/vuln-api:v1.0.0
   else
     echo "docker is not installed or not running'"
   fi
