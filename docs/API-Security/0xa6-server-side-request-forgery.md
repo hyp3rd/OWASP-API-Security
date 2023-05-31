@@ -2,9 +2,7 @@
 
 ## Summary
 
-Server Side Request Forgery (SSRF) is a vulnerability that appears when an attacker can create requests from the vulnerable server. This vulnerability can be used to perform port scanning of internal networks, access internal services such as HTTP, FTP, SMTP, etc., and, in some cases, access the server's local file system.
-
-Server Side Request Forgery (SSRF) is a security vulnerability that occurs when an API can request arbitrary URLs the user provides without sufficient validation or restrictions. This can happen when an API endpoint receives a URI as a parameter and then accesses the provided URI. This vulnerability is often seen in modern application development due to the widespread use of functionalities like Webhooks, file fetching from URLs, custom Single Sign-On (SSO), and URL previews.
+[Server Side Request Forgery (SSRF)](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa6-server-side-request-forgery.md) is a security vulnerability that occurs when an API can request arbitrary URLs the user provides without sufficient validation or restrictions. This can happen when an API endpoint receives a URI as a parameter and then accesses the provided URI. This vulnerability is often seen in modern application development due to the widespread use of functionalities like Webhooks, file fetching from URLs, custom Single Sign-On (SSO), and URL previews.
 It can lead to performing port scanning of internal networks, accessing internal services such as HTTP, FTP, SMTP, etc. and in some cases, accessing the server's local file system.
 
 ## Impact
