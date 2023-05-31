@@ -3,13 +3,12 @@ import uuid
 from enum import Enum
 from typing import Dict, Optional
 
-import requests
+import requests  # pylint: disable=import-error
 from api.models import Invite, Picture
 from api.rate_limiter import RateLimitMiddleware
 from fastapi import FastAPI, Header  # pylint: disable=import-error
 from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import validators
 
 
 class APIVersion(str, Enum):
