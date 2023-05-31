@@ -95,7 +95,7 @@ class VulnAPI:
                      response_model=None)(self.index)
 
         # The get_shops function is used to return the list of shops
-        self.app.get(path=f"{APIVersion.V1}/shops",
+        self.app.get(path=f"{APIVersion.V1.value}/shops",
                      tags=["shops"],
                      name="BOLA",
                      summary="Broken Object Level Authorization",
@@ -103,7 +103,7 @@ class VulnAPI:
                      response_model=None)(self.get_shops)
 
         # The get_shop_revenue_data function is used to return the revenue data for a shop
-        self.app.get(path=f"{APIVersion.V1}/shops/{{shop_name}}/revenue_data.json",
+        self.app.get(path=f"{APIVersion.V1.value}/shops/{{shop_name}}/revenue_data.json",
                      tags=["shops"],
                      name="Broken Authentication",
                      summary="API2:2023 Broken Authentication",
@@ -111,7 +111,7 @@ class VulnAPI:
                      response_model=None)(self.get_shop_revenue_data)
 
         # The update_email function is used to update the email address associated with a user's account
-        self.app.put(path=f"{APIVersion.V1}/account",
+        self.app.put(path=f"{APIVersion.V1.value}/account",
                      tags=["account"],
                      name="Broken Authentication",
                      summary="API2:2023 Broken Authentication",
@@ -123,7 +123,7 @@ class VulnAPI:
         # If the video_id exists in our video data,
         # it updates the associated description and blocked status.
         # If the video_id doesn't exist, it returns an error message.
-        self.app.put(path=f"{APIVersion.V1}/videos/{{video_id}}",
+        self.app.put(path=f"{APIVersion.V1.value}/videos/{{video_id}}",
                      tags=["videos"],
                      name="Broken Object Property Level Authorization",
                      summary="API3:2023 Broken Object Property Level Authorization",
@@ -132,7 +132,7 @@ class VulnAPI:
 
         # The get_invite function is used to return the invite data for a user
 
-        self.app.get(path=f"{APIVersion.V1}/invites/{{invite_id}}",
+        self.app.get(path=f"{APIVersion.V1.value}/invites/{{invite_id}}",
                      tags=["invites"],
                      name="Broken Function Level Authorization",
                      summary="API5:2023 Broken Function Level Authorization",
@@ -140,7 +140,7 @@ class VulnAPI:
                      response_model=Invite)(self.get_invite)
 
         # The create_invite function is used to post an invite for a user
-        self.app.post(path=f"{APIVersion.V1}/invites",
+        self.app.post(path=f"{APIVersion.V1.value}/invites",
                       tags=["invites"],
                       name="Broken Function Level Authorization",
                       summary="API5:2023 Broken Function Level Authorization",
@@ -148,7 +148,7 @@ class VulnAPI:
                       response_model=None)(self.create_invite)
 
         # The upload_picture function is used to upload a picture for a user profile
-        self.app.post(path=f"{APIVersion.V1}/profile/picture",
+        self.app.post(path=f"{APIVersion.V1.value}/profile/picture",
                       tags=["profile"],
                       name="Server Side Request Forgery",
                       summary="API6:2023 Server Side Request Forgery",
