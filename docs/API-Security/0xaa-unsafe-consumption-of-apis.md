@@ -1,5 +1,7 @@
 # API10:2023 Unsafe Consumption of APIs
 
+## Summary
+
 [Unsafe Consumption of APIs](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xaa-unsafe-consumption-of-apis.md) refers to the security risk associated with integrating external or third-party APIs into your own applications. This risk emerges from developers often trusting but not verifying the endpoints of these external APIs. This can lead to exploiting security flaws in these APIs, impacting the applications that rely on them. Common issues include the exposure of sensitive information to unauthorized actors and various kinds of injections​​.
 
 ## Impact

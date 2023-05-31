@@ -1,5 +1,7 @@
 # API7:2023 Security Misconfiguration
 
+## Summary
+
 [Security Misconfiguration](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa7-security-misconfiguration.md) refers to a security weakness where attackers often attempt to exploit unpatched flaws, unprotected files, directories, or standard endpoints to gain unauthorized access or knowledge of the system. This misconfiguration can occur at any level of the API stack, from the network to the application level. Automated tools can detect and exploit misconfigurations like unnecessary services or legacy options. If exploited, security misconfigurations can expose sensitive user data and system details, potentially leading to a full-service compromise.
 
 ## Impact

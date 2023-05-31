@@ -1,5 +1,7 @@
 # API5:2023 Broken Function Level Authorization
 
+## Summary
+
 The [Broken Function Level Authorization](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa5-broken-function-level-authorization.md) vulnerability occurs when an attacker sends legitimate API calls to an endpoint that they should not have access to. These endpoints might be exposed to anonymous users or regular, non-privileged users. APIs are structured to make it easier to discover these flaws, such as by changing the HTTP method from GET to PUT or changing the "users" string in the URL to "admins". Authorization checks for a function or resource are usually managed via configuration and sometimes at the code level. Modern applications can contain many types of roles or groups and complex user hierarchies (e.g., sub-users or users with more than one role), which can make implementing proper checks confusing. Detection of such flaws relies on appropriate logging and monitoring. Attackers can exploit these flaws to access unauthorized functionality, with administrative functions being key targets​.
 
 ## Impact

@@ -1,5 +1,7 @@
 # API2:2023 Broken Authentication
 
+## Summary
+
 [Broken Authentication](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa2-broken-authentication.md) is a type of vulnerability that allows an attacker to bypass the authentication methods that are used by a web application or API.
 
 This could be due to flaws in the authentication scheme, implementation, or design. An attacker exploiting this vulnerability could assume the identity of other users or gain unauthorized access to sensitive data.

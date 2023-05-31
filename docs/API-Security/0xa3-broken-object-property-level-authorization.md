@@ -1,5 +1,7 @@
 # API3:2023 Broken Object Property Level Authorization
 
+## Summary
+
 In [Broken Object Property Level Authorization](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa3-broken-object-property-level-authorization.md) vulnerabilities, an API endpoint is susceptible when it:
 
 1. Accepts a JSON object from a client application and merges it into a server-side object without adequately verifying the client's permissions.

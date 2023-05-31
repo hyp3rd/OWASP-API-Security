@@ -1,5 +1,7 @@
 # API8:2023 Lack of Protection from Automated Threats
 
+## Summary
+
 Automated threats have become more profitable, smarter, and harder to protect from, and APIs are often used as an easy target for them. [Lack of Protection from Automated Threats](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa8-lack-of-protection-from-automated-threats.md) is an API security issue where APIs expose business-sensitive functionality without considering how the functionality could harm the business if used excessively in an automated manner. Traditional protections, such as rate limiting and captchas, have become less effective. For example, an attacker who operates botnets (for scalping) gets around rate limiting because they can easily access the API from thousands of location/IP addresses worldwide in seconds. Vulnerable APIs don't necessarily have implementation bugs. They expose a business flow - such as buying a ticket or posting a comment - without considering how the functionality could harm the business if used excessively in an automated manner.
 
 ## Impact

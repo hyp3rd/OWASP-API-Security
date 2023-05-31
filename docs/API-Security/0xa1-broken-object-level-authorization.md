@@ -1,5 +1,7 @@
 # API1:2023 Broken Object Level Authorization
 
+## Summary
+
 The [**Broken Object Level Authorization**](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa1-broken-object-level-authorization.md) is an API vulnerability where an attacker can manipulate object references to access unauthorized data.
 
 This is often due to the API server needing to correctly verify whether the requesting user can access the requested data. This can result in unauthorized data exposure, modification, and sometimes, a complete system takeover.
