@@ -1,5 +1,7 @@
 # API9:2023 Improper Inventory Management
 
+## Summary
+
 [Improper Inventory Management](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa9-improper-assets-management.md) is a security weakness where threat agents gain unauthorized access through old API versions, or endpoints left running unpatched and using weaker security requirements. This vulnerability may also be exploited by gaining access to sensitive data through a third party that should not have the data. Lack of updated documentation and absence of assets inventory and retirement strategies result in running unpatched systems, leading to sensitive data leakage. This issue is common in modern concepts like microservices which make applications easy to deploy and independent, leading to the exposure of API hosts unnecessarily. Attackers can gain access to sensitive data or even take over the server through old, unpatched API versions connected to the same database​.
 
 ## Impact
