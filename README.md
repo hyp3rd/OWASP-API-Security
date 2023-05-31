@@ -30,7 +30,7 @@ The examples developed in the project are not intended for production use. **The
       - [OWASP API Security Top 10 2023RC](./docs/README.md#owasp-api-security)
         - [0x01 Broken Object Level Authorization](./docs/README.md#0x01-broken-object-level-authorization)
         - [0x02 Broken User Authentication](./docs/README.md#0x02-broken-authentication)
-        - [#0x03-broken-object-property-level-authorization](./docs/README.md#0x03-broken-object-property-level-authorization)
+        - [0x03-broken-object-property-level-authorization](./docs/README.md#0x03-broken-object-property-level-authorization)
         - [0x04 Unrestricted Resource Consumption](./docs/README.md#0x04-unrestricted-resource-consumption)
         - [0x05 Broken Function Level Authorization](./docs/README.md#0x05-broken-function-level-authorization)
         - [0x06 Server-Side Request Forgery](./docs/README.md#0x06-server-side-request-forgery)
