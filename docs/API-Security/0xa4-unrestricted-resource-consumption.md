@@ -20,3 +20,6 @@ Any user or system sending requests to the API could exploit this weakness. This
 ## Exploitation
 
 The primary method of exploiting this vulnerability is to send requests to the API at a rate faster than it can handle, ultimately causing the system to become unstable or fail. This can be done by any user or system that can send requests to the API.
+More sophisticated attacks can be performed by sending requests that cause the API to consume more resources than it should. For example, an attacker could send a request that causes the API to perform an expensive database query or to return a large amount of data.
+Another approach would be to send requests that cause the API to perform an expensive operation, such as a cryptographic operation or a complex calculation. This can be done by sending requests that cause the API to perform a costly process, such as a cryptographic operation or a complex analysis.
+Differently, an attacker can exploit exponential backoff algorithms to cause the API to consume more resources than it should.
