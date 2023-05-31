@@ -1,6 +1,6 @@
 # API4:2023 Unrestricted Resource Consumption
 
-Unrestricted Resource Consumption occurs when an API is vulnerable to users consuming resources indefinitely, potentially leading to system instability and ultimately to a denial of service. This happens when the API does not adequately control the amount of resources that are allocated when processing a user's request, which can be exploited by an attacker by sending requests at a rate faster than it can handle.
+[Unrestricted Resource Consumption](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa4-unrestricted-resource-consumption.md) occurs when an API is vulnerable to users consuming resources indefinitely, potentially leading to system instability and ultimately to a denial of service. This happens when the API does not adequately control the amount of resources that are allocated when processing a user's request, which can be exploited by an attacker by sending requests at a rate faster than it can handle.
 
 ## Impact
 
