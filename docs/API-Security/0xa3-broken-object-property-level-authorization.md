@@ -9,7 +9,7 @@ This vulnerability is particularly dangerous when the object properties include 
 
 ## Exploitation
 
-Exploiting BOP LA involves the following steps:
+Exploiting **BOP LA** involves the following steps:
 
 1. **Identify Vulnerable API Endpoints**: The attacker needs to identify which API endpoints are vulnerable to BOP LA. This can be achieved by observing the API's responses and noting any sensitive data or controls returned in these responses.
 
@@ -19,7 +19,7 @@ Exploiting BOP LA involves the following steps:
 
 ## Mitigation
 
-Preventing BOP LA vulnerabilities involves the implementation of strict access controls that verify a user's permissions before allowing them to access or modify an object's properties. This can be achieved by:
+Preventing **BOP LA** vulnerabilities involves the implementation of strict access controls that verify a user's permissions before allowing them to access or modify an object's properties. This can be achieved by:
 
 1. Implementing Property Level Permissions: Ensure that each property of an object has associated permissions that are checked before the property is accessed or modified.
 
