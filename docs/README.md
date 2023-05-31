@@ -14,7 +14,7 @@
     - [0x08 Lack of Protection from Automated Threats](#0x08-lack-of-protection-from-automated-threats)
     - [0x09 Improper Assets Management](#0x09-improper-assets-management)
     - [0xaa Unsafe Consumption of APIs](#0xaa-unsafe-consumption-of-apis)
-  - [Tools](#tools)
+  - [Tools Used](#tools)
     - [Burp](./burp.md)
     - [Zap](./zap.md)
     - [ffuf](./ffuf.md)
@@ -32,52 +32,52 @@ Here is a breakdown with examples and explanations on how to adopt security meas
 ### 0x01 Broken Object Level Authorization
 
 - [Documentation](./API-Security/0xa1-broken-object-level-authorization.md)
-- [Example](./API-Security/0xa1-broken-object-level-authorization.md#example)
+- [Exploitation](./API-Security/0xa1-broken-object-level-authorization.md#exploitation)
 
 ### 0x02 Broken Authentication
 
 - [Documentation](./API-Security/0xa2-broken-authentication.md)
-- [Example](./API-Security/0xa2-broken-authentication.md#example)
+- [Exploitation](./API-Security/0xa2-broken-authentication.md#exploitation)
 
 ### 0x03 Broken Object Property Level Authorization
 
 - [Documentation](./API-Security/0xa3-broken-object-property-level-authorization.md)
-- [Example](./API-Security/0xa3-broken-object-property-level-authorization.md#example)
+- [Exploitation](./API-Security/0xa3-broken-object-property-level-authorization.md#exploitation)
 
 ### 0x04 Unrestricted Resource Consumption
 
 - [Documentation](./API-Security/0xa4-unrestricted-resource-consumption.md)
-- [Example](./API-Security/0xa4-unrestricted-resource-consumption.md#example)
+- [Exploitation](./API-Security/0xa4-unrestricted-resource-consumption.md#exploitation)
 
 ### 0x05 Broken Function Level Authorization
 
 - [Documentation](./API-Security/0xa5-broken-function-level-authorization.md)
-- [Example](./API-Security/0xa5-broken-function-level-authorization.md#example)
+- [Exploitation](./API-Security/0xa5-broken-function-level-authorization.md#exploitation)
 
 ### 0x06 Server-Side Request Forgery
 
 - [Documentation](./API-Security/0xa6-server-side-request-forgery.md)
-- [Example](./API-Security/0xa6-server-side-request-forgery.md#example)
+- [Exploitation](./API-Security/0xa6-server-side-request-forgery.md#exploitation)
 
 ### 0x07 Security Misconfiguration
 
 - [Documentation](./API-Security/0xa7-security-misconfiguration.md)
-- [Example](./API-Security/0xa7-security-misconfiguration.md#example)
+- [Exploitation](./API-Security/0xa7-security-misconfiguration.md#exploitation)
 
 ### 0x08 Lack of Protection from Automated Threats
 
 - [Documentation](./API-Security/0xa8-lack-of-protection-from-automated-threats.md)
-- [Example](./API-Security/0xa8-lack-of-protection-from-automated-threats.md#example)
+- [Exploitation](./API-Security/0xa8-lack-of-protection-from-automated-threats.md#exploitation)
 
 ### 0x09 Improper Assets Management
 
 - [Documentation](./API-Security/0xa9-improper-assets-management.md)
-- [Example](./API-Security/0xa9-improper-assets-management.md#example)
+- [Exploitation](./API-Security/0xa9-improper-assets-management.md#exploitation)
 
 ### 0xaa Unsafe Consumption of APIs
 
 - [Documentation](./API-Security/0xaa-unsafe-consumption-of-apis.md)
-- [Example](./API-Security/0xaa-unsafe-consumption-of-apis.md#example)
+- [Exploitation](./API-Security/0xaa-unsafe-consumption-of-apis.md#exploitation)
 
 ## Tools
 
