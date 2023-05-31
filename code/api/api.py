@@ -1,13 +1,13 @@
 """API module."""
+import uuid
 from enum import Enum
 from typing import Dict, Optional
 
+from api.models import Invite
 from api.rate_limiter import RateLimitMiddleware
-from fastapi import FastAPI, Header
+from fastapi import FastAPI, Header  # pylint: disable=import-error
 from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
-
-# from pydantic import ValidationError  # pylint: disable=import-error
 
 
 class APIVersion(str, Enum):
@@ -44,6 +44,17 @@ videos_data = {
     "video3": {"description": "Yet another nice video", "blocked": False},
     "video4": {"description": "A blocked video", "blocked": True},
     # ... more video data ...
+}
+
+# write 4 UUIDv4 here to follow
+
+
+invites_data: Dict[str, Invite] = {
+    "54f0c972-ff54-40cc-96f0-229134db8342": {"email": "user1@example.com", "role": "user"},
+    "07b00d34-3e37-440a-8f62-2f787feec8c3": {"email": "user2@example.com", "role": "user"},
+    "68d7d6d3-6a1c-4932-87a5-1c3e62f7e04a": {"email": "user3@example.com", "role": "user"},
+    "19d7e418-5d5a-4a26-846e-eb2ac91740d0": {"email": "user4@example.com", "role": "user"},
+    # ... more invite data ...
 }
 
 
@@ -117,6 +128,23 @@ class VulnAPI:
                      description="Update the video description and blocked status",
                      response_model=None)(self.update_video)
 
+        # The get_invite function is used to return the invite data for a user
+
+        self.app.get(path=f"{APIVersion.V1}/invites/{{invite_id}}",
+                     tags=["invites"],
+                     name="Broken Function Level Authorization",
+                     summary="API5:2023 Broken Function Level Authorization",
+                     description="Get the invite data for a user",
+                     response_model=Invite)(self.get_invite)
+
+        # The create_invite function is used to post an invite for a user
+        self.app.post(path=f"{APIVersion.V1}/invites",
+                      tags=["invites"],
+                      name="Broken Function Level Authorization",
+                      summary="API5:2023 Broken Function Level Authorization",
+                      description="Post an invite for a user",
+                      response_model=None)(self.create_invite)
+
     def index(self):
         """index."""
         return {"/dev/null ": "before dishonor"}
@@ -183,6 +211,28 @@ class VulnAPI:
             return {"message": "Video updated successfully"}
 
         return {"error": "Video not found"}
+
+    # BFLA: API5:2023 Broken Function Level Authorization
+    async def get_invite(self, invite_guid: str):
+        """Get the invite data for a user."""
+        if invite_guid in invites_data:
+            return invites_data[invite_guid]
+
+        return {"error": "Invite not found"}
+
+    # BFLA: API5:2023 Broken Function Level Authorization
+    # The critical issue here is that the API doesn't check the user's permissions
+    # before allowing them to create a new invite with any role.
+    # This means that an attacker could create a new invite with an admin role,
+    # and then use this invite to create an admin account and gain full access to the system.
+    # To fix this issue, we would typically add a function level authorization check
+    # that verifies the user's role before allowing them to access certain endpoints.
+    # This would help ensure that only users with the necessary permissions can create new invites.
+    async def create_invite(self, invite: Invite):
+        """Create an invite for a user."""
+        invites_data[str(uuid.uuid4())] = {
+            "email": invite.email, "role": invite.role}
+        return {"message": "Invite created successfully"}
 
 
 app = VulnAPI().app
