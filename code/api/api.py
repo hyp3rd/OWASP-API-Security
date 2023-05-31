@@ -1,8 +1,9 @@
 """API module."""
 from enum import Enum
+from typing import Optional
 
 from api.rate_limiter import RateLimitMiddleware
-from fastapi import FastAPI
+from fastapi import FastAPI, Header
 from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -28,6 +29,13 @@ shops_data = {
     "shop9": {"revenue_data": {"total_revenue": 9000, "monthly_revenue": 900}},
     "shop10": {"revenue_data": {"total_revenue": 10000, "monthly_revenue": 1000}},
     # ... more shop data ...
+}
+
+users_data = {
+    "token1": {"email": "user1@example.com"},
+    "token2": {"email": "user2@example.com"},
+    "token3": {"email": "user3@example.com"},
+    # ... more user data ...
 }
 
 
@@ -76,10 +84,18 @@ class VulnAPI:
         # The get_shop_revenue_data function is used to return the revenue data for a shop
         self.app.get(path=f"{APIVersion.V1}/shops/{{shop_name}}/revenue_data.json",
                      tags=["shops"],
-                     name="BOLA",
-                     summary="Broken Object Level Authorization",
-                     description="The endpoints exposes the revenue data for a shop.",
+                     name="Broken Authentication",
+                     summary="API2:2023 Broken Authentication",
+                     description="Update the email address associated with a user's account",
                      response_model=None)(self.get_shop_revenue_data)
+
+        # The update_email function is used to update the email address associated with a user's account
+        self.app.put(path=f"{APIVersion.V1}/account",
+                     tags=["account"],
+                     name="Broken Authentication",
+                     summary="API2:2023 Broken Authentication",
+                     description="Update the email address associated with a user's account",
+                     response_model=None)(self.update_email)
 
     def index(self):
         """index."""
@@ -100,6 +116,26 @@ class VulnAPI:
             return shops_data[shop_name]["revenue_data"]
 
         return {"error": "Shop not found"}
+
+    # BA: Broken Authentication
+    # Because the API does not require the user to confirm
+    # their identity by providing their current password,
+    # bad actors are able to put themselves in a position to steal the auth token.
+    # They also might be able to take over the victim's account
+    # by starting the reset password workflow after
+    # updating the email address of the victim's account.
+    # curl -X PUT "http://localhost:8000/api/v1/account" \
+    #     -H "accept: application/json" \
+    #     -H "Authorization: Bearer token1" \
+    #     -d "{ \"email\": \"new_email@example.com\" }"
+    async def update_email(self, authorization: Optional[str] = Header(), email: str = None):
+        """Update the email address associated with a user's account."""
+        auth_token = authorization.split(' ')[1] if authorization else None
+        if auth_token in users_data:
+            users_data[auth_token]["email"] = email
+            return {"message": "Email updated successfully"}
+
+        return {"error": "Invalid authorization token"}
 
 
 app = VulnAPI().app
