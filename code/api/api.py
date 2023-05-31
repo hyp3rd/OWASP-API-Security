@@ -1,6 +1,6 @@
 """API module."""
 from enum import Enum
-from typing import Optional
+from typing import Dict, Optional
 
 from api.rate_limiter import RateLimitMiddleware
 from fastapi import FastAPI, Header
@@ -36,6 +36,14 @@ users_data = {
     "token2": {"email": "user2@example.com"},
     "token3": {"email": "user3@example.com"},
     # ... more user data ...
+}
+
+videos_data = {
+    "video1": {"description": "A nice video", "blocked": True},
+    "video2": {"description": "Another nice video", "blocked": False},
+    "video3": {"description": "Yet another nice video", "blocked": False},
+    "video4": {"description": "A blocked video", "blocked": True},
+    # ... more video data ...
 }
 
 
@@ -97,6 +105,18 @@ class VulnAPI:
                      description="Update the email address associated with a user's account",
                      response_model=None)(self.update_email)
 
+        # The update_video function the /api/v1/video/update_video endpoint accepts a PUT request
+        # with a request body containing a description and optionally a blocked field.
+        # If the video_id exists in our video data,
+        # it updates the associated description and blocked status.
+        # If the video_id doesn't exist, it returns an error message.
+        self.app.put(path=f"{APIVersion.V1}/videos/{{video_id}}",
+                     tags=["videos"],
+                     name="Broken Object Property Level Authorization",
+                     summary="API3:2023 Broken Object Property Level Authorization",
+                     description="Update the video description and blocked status",
+                     response_model=None)(self.update_video)
+
     def index(self):
         """index."""
         return {"/dev/null ": "before dishonor"}
@@ -136,6 +156,33 @@ class VulnAPI:
             return {"message": "Email updated successfully"}
 
         return {"error": "Invalid authorization token"}
+
+    # BOP: Broken Object Property Level Authorization
+    # In this example, the vulnerability lies in the fact that the API allows a user
+    # to change the blocked property of a video, even though
+    # this should be an internal property that users do not have access to.
+    # This means that a user could unblock their own blocked content by including a blocked field in the request body and setting it to false.
+    # The endpoint /api/v1/video/update_video accepts a PUT request to update the description of a video.
+    # For simplicity's sake, let's assume that there is no actual authentication logic in place
+    #  and the blocked property of a video can be changed by any user.
+    # This would highlight the vulnerability as there is no check in place
+    # to confirm that the user making the request should have access to the blocked property.
+    # curl -X 'PUT' \
+    #   'http://127.0.0.1:8000/api/v1/videos/{video_id}' \
+    #   -H 'accept: application/json' \
+    #   -H 'Content-Type: application/json' \
+    #   -d '{"description": "A nice video", "blocked": false}'
+    async def update_video(self, video: Dict[str, str]):
+        """Update the description or blocked status of a video."""
+        video_id = "video1"  # For simplicity, we'll assume that we're always updating video1
+        if video_id in videos_data:
+            if "description" in video:
+                videos_data[video_id]["description"] = video["description"]
+            if "blocked" in video:
+                videos_data[video_id]["blocked"] = video["blocked"]
+            return {"message": "Video updated successfully"}
+
+        return {"error": "Video not found"}
 
 
 app = VulnAPI().app
