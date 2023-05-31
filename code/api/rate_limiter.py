@@ -2,7 +2,8 @@
 from collections import defaultdict
 from time import time
 
-from fastapi import Response
+from fastapi import \
+    Response  # pylint: disable=no-name-in-module # pylint: disable=import-error
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.status import HTTP_429_TOO_MANY_REQUESTS
 

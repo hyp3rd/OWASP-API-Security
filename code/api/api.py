@@ -3,11 +3,13 @@ import uuid
 from enum import Enum
 from typing import Dict, Optional
 
-from api.models import Invite
+import requests
+from api.models import Invite, Picture
 from api.rate_limiter import RateLimitMiddleware
 from fastapi import FastAPI, Header  # pylint: disable=import-error
 from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import validators
 
 
 class APIVersion(str, Enum):
@@ -145,6 +147,14 @@ class VulnAPI:
                       description="Post an invite for a user",
                       response_model=None)(self.create_invite)
 
+        # The upload_picture function is used to upload a picture for a user profile
+        self.app.post(path=f"{APIVersion.V1}/profile/picture",
+                      tags=["profile"],
+                      name="Server Side Request Forgery",
+                      summary="API6:2023 Server Side Request Forgery",
+                      description="Upload a picture for a user profile",
+                      response_model=None)(self.upload_picture)
+
     def index(self):
         """index."""
         return {"/dev/null ": "before dishonor"}
@@ -233,6 +243,22 @@ class VulnAPI:
         invites_data[str(uuid.uuid4())] = {
             "email": invite.email, "role": invite.role}
         return {"message": "Invite created successfully"}
+
+    # SSRF: API6:2023 Server Side Request Forgery
+    async def upload_picture(self, picture: Picture):
+        """Upload a picture for a user profile."""
+        # For simplicity, we won't actually download the image from the URL. Instead,
+        # we'll just return a message saying the image was downloaded successfully after executing a HEAD request to the URL.
+
+        # Check if the url exists
+        try:
+            response = requests.head(picture.picture_url)
+            if response.status_code != 200:
+                return {"error": "URL does not exist"}
+        except requests.exceptions.RequestException:
+            return {"error": "URL does not exist"}
+
+        return {"message": f"Image downloaded successfully from {picture.picture_url}"}
 
 
 app = VulnAPI().app

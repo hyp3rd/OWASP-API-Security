@@ -1,2 +1,2 @@
 uvicorn[standard]==0.22.0
-fastapi==0.95.2
+fastapi==0.95.2requests==2.31.0
