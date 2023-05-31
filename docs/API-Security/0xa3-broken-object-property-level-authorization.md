@@ -1,6 +1,6 @@
 # API3:2023 Broken Object Property Level Authorization
 
-In Broken Object Property Level Authorization vulnerabilities, an API endpoint is susceptible when it:
+In [Broken Object Property Level Authorization](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa3-broken-object-property-level-authorization.md) vulnerabilities, an API endpoint is susceptible when it:
 
 1. Accepts a JSON object from a client application and merges it into a server-side object without adequately verifying the client's permissions.
 2. Exposes sensitive properties to the client application that should not be returned in the server response.
@@ -27,6 +27,6 @@ Preventing BOP LA vulnerabilities involves the implementation of strict access c
 
 3. Enforce Input Validation: Implement strict input validation to prevent attackers from supplying malicious JSON objects in their requests.
 
-4. Use of Allow Lists: Implement allow lists that specify which properties a user can access or modify.
+4. Use of Allow Lists: Implement allow-lists that specify which properties a user can access or modify.
 
 The steps for preventing and managing security risks are described in general terms and are consistent with the guidelines outlined in the OWASP API Security document.
