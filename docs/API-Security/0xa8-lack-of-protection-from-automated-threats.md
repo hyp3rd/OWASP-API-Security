@@ -16,8 +16,8 @@ Exploiting this security issue involves understanding the business model of the 
 
 Mitigation planning should be done in two layers:
 
-    **Business** - identify the business flows that might harm the business if used excessively.
-    **Engineering** - choose the proper protection mechanisms to mitigate the business risk.
+**Business** - identify the business flows that might harm the business if used excessively.
+**Engineering** - choose the proper protection mechanisms to mitigate the business risk.
 
 Some of the protection mechanisms that can be used to slow down automated threats are:
 

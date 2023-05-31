@@ -12,11 +12,11 @@ The impact of this vulnerability is significant. If an API is compromised, it ca
 
 Exploitation scenarios can vary greatly, but a few examples are:
 
-    1. An API relies on a third-party service to enrich user-provided business addresses. Attackers can use this third-party service to store an SQL injection (SQLi) payload associated with a business they created. It could then exfiltrate data to an attacker's controlled server.
+1. An API relies on a third-party service to enrich user-provided business addresses. Attackers can use this third-party service to store an SQL injection (SQLi) payload associated with a business they created. It could then exfiltrate data to an attacker's controlled server.
 
-    2. An API integrates with a third-party service provider to store sensitive user medical information. If the third-party API is compromised and starts responding with a redirect to an attacker's server, the API would unknowingly send the user's sensitive data to the attacker's server due to its blind following of redirects.
+2. An API integrates with a third-party service provider to store sensitive user medical information. If the third-party API is compromised and starts responding with a redirect to an attacker's server, the API would unknowingly send the user's sensitive data to the attacker's server due to its blind following of redirects.
 
-    3. An attacker can prepare a git repository with a malicious name, which, when integrated with an application, could be used as an injection payload, causing the application to execute harmful SQL queries​1​.
+3. An attacker can prepare a git repository with a malicious name, which, when integrated with an application, could be used as an injection payload, causing the application to execute harmful SQL queries​​.
 
 ## Prevention
 
