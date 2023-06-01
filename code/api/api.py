@@ -6,9 +6,20 @@ from typing import Dict, Optional
 import requests  # pylint: disable=import-error
 from api.models import Invite, Picture
 from api.rate_limiter import RateLimitMiddleware
-from fastapi import FastAPI, Header  # pylint: disable=import-error
+from fastapi import (Depends, FastAPI, Header,  # pylint: disable=import-error
+                     HTTPException, status)
 from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+
+security = HTTPBearer()
+
+
+def verify_token(token: str):
+    """Verify token."""
+    if token == "secret_token":
+        return True
+    return False
 
 
 class APIVersion(str, Enum):
@@ -154,6 +165,15 @@ class VulnAPI:
                       description="Upload a picture for a user profile",
                       response_model=None)(self.upload_picture)
 
+        # The GET /dm/user_updates.json endpoint accepts query parameters conversation_id and cursor.
+        # It then returns a simulated API response without including the Cache-Control header.
+        self.app.get(path=f"{APIVersion.V1.value}/dm/user_updates.json",
+                     tags=["dm"],
+                     name="Security Misconfiguration",
+                     summary="API7:2023 Security Misconfiguration",
+                     description="Get the user DM updates",
+                     response_model=None)(self.get_user_updates)
+
     def index(self):
         """index."""
         return {"/dev/null ": "before dishonor"}
@@ -258,6 +278,37 @@ class VulnAPI:
             return {"error": "URL does not exist"}
 
         return {"message": f"Image downloaded successfully from {picture.picture_url}"}
+
+    # API7:2023 Security Misconfiguration
+    # curl -v -X 'GET' \
+    #   'http://localhost:8000/api/v1/dm/user_updates.json?conversation_id=1234567&cursor=GRlFp7LCUAAAA' \
+    #   -H 'accept: application/json' \
+    #   -H 'Authorization: Bearer secret_token'
+    async def get_user_updates(
+        self,
+        conversation_id: str,
+        cursor: str,
+        credentials: HTTPAuthorizationCredentials = Depends(security)
+    ):
+        """Get the updates for a user."""
+        if not verify_token(credentials.credentials):
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid authentication credentials",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+
+        # Simulate the API response with the Cache-Control header
+        response = {
+            "conversation_id": conversation_id,
+            "cursor": cursor,
+            "messages": [
+                # Include the messages for the conversation
+                {"message": "Hello", "user": "user1"},
+                {"message": "Hi", "user": "user2"},
+            ]
+        }
+        return response
 
 
 app = VulnAPI().app
