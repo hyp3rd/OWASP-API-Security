@@ -107,8 +107,8 @@ class VulnAPI:
         # The get_shops function is used to return the list of shops
         self.app.get(path=f"{APIVersion.V1.value}/shops",
                      tags=["shops"],
-                     name="BOLA",
-                     summary="Broken Object Level Authorization",
+                     name="Broken Object Level Authorization",
+                     summary="API1:2023 Broken Object Level Authorization",
                      description="The endpoints exposes a list of all the shops available in the ecommerce.",
                      response_model=None)(self.get_shops)
 
